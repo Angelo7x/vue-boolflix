@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <Header @search="searchFilm"/>
-    <Films/>
+    <Films :elems="films"/>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import Header from "./components/Header.vue";
 import Films from "./components/Films";
 
@@ -16,9 +16,23 @@ export default {
     Header,
     Films,
   },
+  data() {
+    return {
+      films: []
+    }
+  },
   methods: {
     searchFilm(text) {
-      console.log(text);
+      axios.get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: 'ff6eb15fc7fa9fcec3445ca68a2bccee',
+          query: text,
+          language: 'it-IT',
+        }
+      })
+      .then( (response) => {
+        this.films = response.data.results;
+      });
     }
   }
 }

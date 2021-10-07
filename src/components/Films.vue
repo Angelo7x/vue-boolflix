@@ -1,6 +1,11 @@
 <template>
   <div class="films-container">
-    <Card/>
+      <ul>
+          <li v-for="(film, index) in elems" :key="index">
+              <Card :attr="film"/>
+          </li>
+      </ul>
+    
   </div>
 </template>
 
@@ -8,6 +13,7 @@
 import Card from "./Card.vue"
 export default {
     name: 'Films',
+    props: ['elems'],
     components: {
         Card
     }
