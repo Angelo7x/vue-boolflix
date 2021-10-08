@@ -5,6 +5,12 @@
               <Card :attr="film"/>
           </li>
       </ul>
+
+      <ul>
+          <li v-for="(serie, index) in serie" :key="index">
+              <Card :attr="serie"/>
+          </li>
+      </ul>
     
   </div>
 </template>
@@ -13,7 +19,7 @@
 import Card from "./Card.vue"
 export default {
     name: 'Films',
-    props: ['elems'],
+    props: ['elems', 'serie'],
     components: {
         Card
     }
